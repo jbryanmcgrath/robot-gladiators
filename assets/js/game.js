@@ -1,52 +1,54 @@
-var playerName = window.prompt("What is your Robot's name?");
-var playerHealth = 11;
+//player 1
+var playerName = window.prompt("What is your Robots's name?");
+var playerHealth = 100;
 var playerAttack = 10;
+var playerMoney = 10;
 
-// You can also log multiple values at once like this
-console.log(playerName, playerAttack, playerHealth);
-
+//player bot
 var enemyName = "Roborto";
 var enemyHealth = 50;
 var enemyAttack = 12;
 
+//fight fxn
 var fight = function () {
-    // Alert players that they are starting the round
-    window.alert("Welcome to Robot Gladiators! Let the fight begin!");
+    window.alert("Welcome to Robot Gladiators!")
 
-    //Subtract the value of `playerAttack` from the value of `enemyHealth` and use that result to update the value in the `enemyHealth` variable
-    enemyHealth = enemyHealth - playerAttack;
+    var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter FIGHT or SKIP to choose.");
 
-    // Log a resulting message to the console so we know that it worked.
-    console.log(
-        playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health reamaing."
-    );
+    if (promptFight === "FIGHT" || promptFight === "Fight" || promptFight === "fight") {
+        enemyHealth = enemyHealth - playerAttack;
+        console.log(
+            playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining."
+        );
+        if (enemyHealth <= 0) {
+            window.alert(enemyName + " still has " + enemyHealth + " health left.");
+        }
 
-    // Subtract the value of `enemyAttack` from the value of `playerHealth` and use that result to update the value in the `playerHealth` variable.
-    playerHealth = playerHealth - enemyAttack;
+        playerHealth = playerHealth - enemyAttack;
+        console.log(
+            enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining."
+        );
 
-    // Log a resulting message to the console so we know that it worked.
-    console.log(
-        enemyName + " attacked " + playerName + ". " + playerName + " now has "
-        + playerHealth + " health remaining."
-    );
+        if (playerHealth <= 0) {
+            window.alert(playerName + " has died")
+        } else {
+            window.alert(playerName + " still has " + playerHealth + " health left.");
+        }
+    } else if (promptFight === "skip" || promptFight === "Skip" || promptFight === "SKIP") {
+        var confirmSkip = window.confirm("Are you sure that you would like to quit?");
 
-    //Check to see if your character is alive
-    if (playerHealth >= 0) {
-        alert(playerName + " is still alive and has " + playerHealth + " health remaining!")
+        if (confirmSkip) {
+            window.alert(playerName + " has decided to skip this fight. Goodbye!");
+
+            playerMoney = playerMoney - 2;
+        }
+        else {
+            fight();
+        }
+    } else {
+        window.alert("You need to pick a valid option. Try Again!");
     }
-    else {
-        alert("Your robot " + playerName + " has been defeated by " + enemyName + " .")
-    }
+};
 
-    //Check to see if Roborto is alive
-
-    if (enemyHealth >= 0) {
-        alert("Roborto is still alive! he has " + enemyHealth + " health reamaing")
-    }
-    else {
-        alert(playerName + " has defeated " + enemyName + " !")
-    }
-}
-fight(
-)
+fight();
 
