@@ -1,11 +1,10 @@
 //player 1
-var playerName = window.prompt("What is your Robots's name?");
+var playerName = window.prompt("What is your robot's name?");
 var playerHealth = 100;
 var playerAttack = 10;
 var playerMoney = 10;
 
-//player bot
-var enemyName = "Roborto";
+var enemyNames = ["Roborto", "Amy Android", "Robo Trumble"];
 var enemyHealth = 50;
 var enemyAttack = 12;
 
@@ -18,15 +17,16 @@ var fight = function () {
     if (promptFight === "FIGHT" || promptFight === "Fight" || promptFight === "fight") {
         enemyHealth = enemyHealth - playerAttack;
         console.log(
-            playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining."
+            playerName + " attacked " + enemyNames + ". " + enemyNames + " now has " + enemyHealth + " health remaining."
         );
         if (enemyHealth <= 0) {
-            window.alert(enemyName + " still has " + enemyHealth + " health left.");
+            window.alert(enemyNames + " still has " + enemyHealth + " health left.");
         }
+
 
         playerHealth = playerHealth - enemyAttack;
         console.log(
-            enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining."
+            enemyNames + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining."
         );
 
         if (playerHealth <= 0) {
@@ -50,5 +50,8 @@ var fight = function () {
     }
 };
 
-fight();
+
+for (var i = 0; i < enemyNames.length; i++) {
+    fight(enemyNames[i]);
+}
 
