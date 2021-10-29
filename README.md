@@ -1,1 +1,1 @@
-<!-- This is the initial feature branch -->
+<!-- This is the initial feature branch redone for comprehension-->
